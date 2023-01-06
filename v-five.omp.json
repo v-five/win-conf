@@ -1,0 +1,139 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "final_space": true,
+  "console_title_template": "{{if .Root}}root :: {{end}}{{.Shell}} :: {{.Folder}}",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "os",
+          "style": "diamond",
+          "foreground": "#E5C07B",
+          "background": "#5A6374",
+          "leading_diamond": "<#5A6374,transparent>\ue0c5</>",
+          "template": "{{ if .WSL }}WSL at {{ end }}{{.Icon}}",
+          "properties": {
+            "alpine": "\uf300",
+            "arch": "\uf303",
+            "centos": "\uf304",
+            "debian": "\uf306",
+            "elementary": "\uf309",
+            "fedora": "\uf30a",
+            "gentoo": "\uf30d",
+            "linux": "\ue712",
+            "macos": "\ue711",
+            "manjaro": "\uf312",
+            "mint": "\uf30f",
+            "opensuse": "\uf314",
+            "raspbian": "\uf315",
+            "ubuntu": "\uf31c",
+            "windows": "\uf871",
+            "wsl": "\ue712",
+            "wsl_separator": " on "
+          }
+        },
+        {
+          "type": "root",
+          "style": "diamond",
+          "foreground": "#E5C07B",
+          "background": "#5A6374",
+          "template": " \uf0e7",
+          "properties": {
+            "root_icon": "\ue7a5"
+          }
+        },
+        {
+          "type": "session",
+          "style": "diamond",
+          "foreground": "#E5C07B",
+          "background": "#5A6374",
+          "trailing_diamond": "\ue0b0",
+          "template": " {{ if ne .Env.POSH_SESSION_DEFAULT_USER .UserName }}{{ .UserName }}{{ end }}"
+        },
+        {
+          "type": "path",
+          "style": "diamond",
+          "foreground": "#DCDFE4",
+          "template": " {{ .Path }} ",
+          "properties": {
+            "folder_icon": "<#5A6374>\ue5fe </>",
+            "folder_separator_icon": "<#E5C07B>\uf460 </>",
+            "home_icon": "\uf7db ",
+            "style": "agnoster_short"
+          }
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#E5C07B",
+          "template": "<b>\u276f</b>"
+        }
+      ],
+      "newline": true
+    },
+    {
+      "type": "rprompt",
+      "segments": [
+        {
+          "type": "exit",
+          "style": "plain",
+          "foreground": "#ffffff",
+          "template": " {{ if gt .Code 0 }}\uf659{{ else }}\uf633{{ end }} ",
+          "properties": {
+            "always_enabled": true
+          }
+        },
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "#ffffff",
+          "template": "{{ .FormattedMs }} ",
+          "properties": {
+            "always_enabled": true
+          }
+        },
+        {
+          "type": "node",
+          "style": "diamond",
+          "foreground": "#98C379",
+          "background": "#5A6374",
+          "template": " {{.PackageManagerIcon}} \ue718 {{.Major}}",
+          "properties": {
+            "fetch_package_manager": true,
+            "npm_icon": "<#E06C75>\ue71e</>",
+            "yarn_icon": "<#61AFEF>\uf61a</>"
+          }
+        },
+        {
+          "type": "dotnet",
+          "style": "diamond",
+          "foreground": "#C678DD",
+          "background": "#5A6374",
+          "template": " \ue77f{{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }}"
+        },
+        {
+          "type": "git",
+          "style": "diamond",
+          "foreground": "#E5C07B",
+          "foreground_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#E5C07B{{ end }}",
+            "{{ if gt .Ahead 0 }}#2EC4B6{{ end }}",
+            "{{ if gt .Behind 0 }}#8A4FFF{{ end }}"
+          ],
+          "background": "#5A6374",
+          "trailing_diamond": "<#5A6374,transparent>\ue0c4</>",
+          "template": "<#DCDFE4> {{ .UpstreamIcon }}{{ .HEAD }}</>{{ if and (eq .Ahead 0) (eq .Behind 0) }}<#98C379> {{ .BranchStatus }}</>{{else}}<#E06C75> {{ .BranchStatus }}</>{{ end }}{{ if or (.Working.Changed) (.Staging.Changed) }} \uf044{{ end }}{{ if gt .StashCount 0 }}<#56B6C2> \uf692</>{{ end }} ",
+          "properties": {
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "git_icon": "\uf7a1"
+          }
+        }
+      ]
+    }
+  ]
+}
