@@ -29,8 +29,8 @@
             "mint": "\uf30f",
             "opensuse": "\uf314",
             "raspbian": "\uf315",
-            "ubuntu": "\uf31c",
-            "windows": "\uf871",
+            "ubuntu": "\ue73a",
+            "windows": "\ue62a",
             "wsl": "\ue712",
             "wsl_separator": " on "
           }
@@ -61,7 +61,7 @@
           "properties": {
             "folder_icon": "<#5A6374>\ue5fe </>",
             "folder_separator_icon": "<#E5C07B>\uf460 </>",
-            "home_icon": "\uf7db ",
+            "home_icon": "\uf46d ",
             "style": "agnoster_short"
           }
         },
@@ -81,7 +81,7 @@
           "type": "exit",
           "style": "plain",
           "foreground": "#ffffff",
-          "template": " {{ if gt .Code 0 }}\uf659{{ else }}\uf633{{ end }} ",
+          "template": " {{ if gt .Code 0 }}\uf00d{{ else }}\uf00c{{ end }} ",
           "properties": {
             "always_enabled": true
           }
@@ -104,7 +104,8 @@
           "properties": {
             "fetch_package_manager": true,
             "npm_icon": "<#E06C75>\ue71e</>",
-            "yarn_icon": "<#61AFEF>\uf61a</>"
+            "yarn_icon": "<#61AFEF>\ue6a7</>",
+            "pnpm_icon": "<#61AFEF>\uf02c1</>"
           }
         },
         {
@@ -112,7 +113,14 @@
           "style": "diamond",
           "foreground": "#C678DD",
           "background": "#5A6374",
-          "template": " \ue77f{{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }}"
+          "template": " \ue77f {{ if .Unsupported }}\uf071{{ else }}{{ .Major }}.{{ .Minor }}{{ end }}"
+        },
+        {
+          "type": "java",
+          "style": "diamond",
+          "foreground": "#5382A1",
+          "background": "#5A6374",
+          "template": " \uedaf <#CC342D>{{ .Major }}</>"
         },
         {
           "type": "git",
@@ -125,12 +133,12 @@
           ],
           "background": "#5A6374",
           "trailing_diamond": "<#5A6374,transparent>\ue0c4</>",
-          "template": "<#DCDFE4> {{ .UpstreamIcon }}{{ .HEAD }}</>{{ if and (eq .Ahead 0) (eq .Behind 0) }}<#98C379> {{ .BranchStatus }}</>{{else}}<#E06C75> {{ .BranchStatus }}</>{{ end }}{{ if or (.Working.Changed) (.Staging.Changed) }} \uf044{{ end }}{{ if gt .StashCount 0 }}<#56B6C2> \uf692</>{{ end }} ",
+          "template": "<#DCDFE4> {{ .UpstreamIcon }}{{ .HEAD }}</>{{ if and (eq .Ahead 0) (eq .Behind 0) }}<#98C379> {{ .BranchStatus }}</>{{else}}<#E06C75> {{ .BranchStatus }}</>{{ end }}{{ if or (.Working.Changed) (.Staging.Changed) }} \uf044{{ end }}{{ if gt .StashCount 0 }}<#56B6C2> \uf0c7</>{{ end }} ",
           "properties": {
             "fetch_stash_count": true,
             "fetch_status": true,
             "fetch_upstream_icon": true,
-            "git_icon": "\uf7a1"
+            "git_icon": "\ue702"
           }
         }
       ]
