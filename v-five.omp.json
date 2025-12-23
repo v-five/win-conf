@@ -2,6 +2,15 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "version": 4,
   "final_space": true,
+  "palette": {
+    "text": "default",
+    "background": "darkGray",
+    "primary": "yellow",
+    "success": "green",
+    "warning": "magenta",
+    "error": "red",
+    "info": "blue"
+  },
   "enable_cursor_positioning": true,
   "console_title_template": "{{if .Root}}root :: {{end}}{{.Shell}} :: {{.Folder}}",
   "async": true,
@@ -20,8 +29,8 @@
         {
           "type": "os",
           "style": "plain",
-          "foreground": "#E5C07B",
-          "background": "#5A6374",
+          "foreground": "p:primary",
+          "background": "p:background",
           "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}}",
           "options": {
             "alpine": "\uf300",
@@ -44,8 +53,8 @@
         {
           "type": "root",
           "style": "plain",
-          "foreground": "#E5C07B",
-          "background": "#5A6374",
+          "foreground": "p:primary",
+          "background": "p:background",
           "template": " \uf0e7",
           "options": {
             "root_icon": "\ue7a5"
@@ -53,28 +62,26 @@
         },
         {
           "type": "session",
-          "style": "diamond",
-          "foreground": "#E5C07B",
-          "background": "#5A6374",
-          "trailing_diamond": "\ue0b0",
-          "template": " {{ if ne .Env.POSH_SESSION_DEFAULT_USER .UserName }}{{ .UserName }}{{ end }}"
+          "style": "plain",
+          "foreground": "p:primary",
+          "background": "p:background",
+          "template": " {{ if ne .Env.POSH_SESSION_DEFAULT_USER .UserName }}{{ .UserName }}{{ end }} "
         },
         {
           "type": "path",
           "style": "plain",
-          "foreground": "#DCDFE4",
           "template": " {{ .Path }} ",
           "options": {
             "home_icon": "\uf46d ",
-            "folder_icon": "<#5A6374>\uf115 </>",
-            "folder_separator_icon": "<#E5C07B>\uf460 </>",
+            "folder_icon": "<p:background>\uf115 </>",
+            "folder_separator_icon": "<p:primary>\uf460 </>",
             "style": "agnoster_short"
           }
         },
         {
           "type": "text",
           "style": "plain",
-          "foreground": "#E5C07B",
+          "foreground": "p:primary",
           "template": "<b>\u276f</b>"
         }
       ]
@@ -102,7 +109,7 @@
           "type": "node",
           "style": "plain",
           "foreground": "#98C379",
-          "background": "#5A6374",
+          "background": "p:background",
           "template": " {{.PackageManagerIcon}} \ued0d {{.Major}}",
           "options": {
             "fetch_package_manager": true,
@@ -116,27 +123,26 @@
           "type": "dotnet",
           "style": "plain",
           "foreground": "#C678DD",
-          "background": "#5A6374",
+          "background": "p:background",
           "template": " \ue77f {{ if .Unsupported }}\uf071{{ else }}{{ .Major }}.{{ .Minor }}{{ end }}"
         },
         {
           "type": "java",
           "style": "plain",
           "foreground": "#5382A1",
-          "background": "#5A6374",
+          "background": "p:background",
           "template": " \ue738 <#CC342D>{{ .Major }}</>"
         },
         {
           "type": "git",
           "style": "plain",
-          "foreground": "#E5C07B",
           "foreground_templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}#E5C07B{{ end }}",
-            "{{ if gt .Ahead 0 }}#2EC4B6{{ end }}",
-            "{{ if gt .Behind 0 }}#8A4FFF{{ end }}"
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:primary{{ end }}",
+            "{{ if gt .Ahead 0 }}p:success{{ end }}",
+            "{{ if gt .Behind 0 }}p:warning{{ end }}"
           ],
-          "background": "#5A6374",
-          "template": "<#DCDFE4> {{ .UpstreamIcon }} {{ .HEAD }}</>{{ if and (eq .Ahead 0) (eq .Behind 0) }}<#98C379> {{ .BranchStatus }}</>{{else}}<#E06C75> {{ .BranchStatus }}</>{{ end }}{{ if or (.Working.Changed) (.Staging.Changed) }} \uf044{{ end }}{{ if gt .StashCount 0 }}<#56B6C2> \uf0c7</>{{ end }} ",
+          "background": "p:background",
+          "template": "<p:text> {{ .UpstreamIcon }} {{ .HEAD }}</>{{ if and (eq .Ahead 0) (eq .Behind 0) }}<p:success> {{ .BranchStatus }}</>{{else}}<p:warning> {{ .BranchStatus }}</>{{ end }}{{ if or (.Working.Changed) (.Staging.Changed) }} \uf044{{ end }}{{ if gt .StashCount 0 }}<p:info> \uf0c7</>{{ end }} ",
           "options": {
             "fetch_status": true,
             "fetch_upstream_icon": true,
